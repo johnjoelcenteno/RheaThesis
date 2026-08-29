@@ -1,21 +1,28 @@
 export const studentWardFieldMetadata = {
-  FirstName: {
+  FullName: {
     label: "First Name",
     type: "text",
-    placeholder: "Enter first name",
+    placeholder: "Search for a student",
     isRequired: true,
+    lookup: {
+      entity: "Students",
+      displayAttribute: "fullName",
+    },
   },
+
   ward: {
     label: "Ward",
     type: "text",
     placeholder: "Enter ward",
     isRequired: true,
   },
+
   in: {
     label: "In",
     type: "time",
     isRequired: true,
   },
+
   out: {
     label: "Out",
     type: "time",

@@ -17,7 +17,7 @@ export function getLookupOptions({
   const records = mockLookupData[entity] ?? [];
 
   if (!search) {
-    return records;
+    return [];
   }
 
   return records.filter((record) =>

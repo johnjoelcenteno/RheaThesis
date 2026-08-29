@@ -12,6 +12,7 @@ export function RecordModal({
   show,
   onHide,
   fields,
+  fieldMetadata = {},
   record,
   mode = "create",
   onSubmit,
@@ -53,19 +54,49 @@ export function RecordModal({
         </Modal.Header>
 
         <Modal.Body>
-          {fields.map((field) => (
-            <Form.Group className="mb-3" controlId={field} key={field}>
-              <Form.Label>{formatHeader(field)}</Form.Label>
-              <Form.Control
-                type="text"
-                name={field}
-                value={formData[field]}
-                placeholder={formatHeader(field)}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          ))}
+          {fields.map((field) => {
+            const metadata = fieldMetadata[field] ?? {};
+            const label = metadata.label ?? formatHeader(field);
+            const inputType = metadata.type ?? "text";
+            const placeholder = metadata.placeholder ?? label;
+
+            const lookupOptions = metadata.lookup
+              ? getLookupOptions({
+                  ...metadata.lookup,
+                  searchText: formData[field] ?? "",
+                })
+              : [];
+
+            const listId = `${field}-lookup-options`;
+
+            return (
+              <Form.Group className="mb-3" controlId={field} key={field}>
+                <Form.Label>{label}</Form.Label>
+
+                <Form.Control
+                  type={inputType}
+                  name={field}
+                  value={formData[field] ?? ""}
+                  placeholder={placeholder}
+                  autoComplete="off"
+                  onChange={handleChange}
+                  required={metadata.isRequired ?? false}
+                  list={metadata.lookup ? listId : undefined}
+                />
+
+                {metadata.lookup && (
+                  <datalist id={listId}>
+                    {lookupOptions.map((option) => (
+                      <option
+                        key={option.id}
+                        value={option[metadata.lookup.displayAttribute]}
+                      />
+                    ))}
+                  </datalist>
+                )}
+              </Form.Group>
+            );
+          })}
         </Modal.Body>
 
         <Modal.Footer>

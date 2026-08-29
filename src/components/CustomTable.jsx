@@ -15,7 +15,12 @@ function formatHeader(propertyName) {
     .replace(/^./, (letter) => letter.toUpperCase()); // first Name → First Name
 }
 
-export function CustomTable({ data = [], onCreate, onUpdate }) {
+export function CustomTable({
+  data = [],
+  fieldMetadata = {},
+  onCreate,
+  onUpdate,
+}) {
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState("create");
   const [selectedRecord, setSelectedRecord] = useState(null);
@@ -227,6 +232,7 @@ export function CustomTable({ data = [], onCreate, onUpdate }) {
         show={showModal}
         onHide={() => setShowModal(false)}
         fields={headers}
+        fieldMetadata={fieldMetadata}
         record={selectedRecord}
         mode={modalMode}
         onSubmit={handleModalSubmit}
