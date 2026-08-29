@@ -1,0 +1,86 @@
+.app-header {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.sidebar-offcanvas.offcanvas {
+  width: 290px !important;
+  background-color: #212529 !important;
+  color: white !important;
+}
+
+.sidebar-offcanvas .offcanvas-header,
+.sidebar-offcanvas .offcanvas-body {
+  background-color: #212529 !important;
+  color: white !important;
+}
+
+.sidebar-offcanvas .offcanvas-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-link,
+.sidebar-group-button,
+.sidebar-sublink {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.75) !important;
+  text-decoration: none;
+  text-align: left;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebar-link,
+.sidebar-group-button {
+  padding: 0.75rem 1rem;
+}
+
+.sidebar-group-button {
+  justify-content: space-between;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.sidebar-link:hover,
+.sidebar-group-button:hover,
+.sidebar-sublink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white !important;
+}
+
+.sidebar-link.active,
+.sidebar-sublink.active {
+  background-color: #198754;
+  color: white !important;
+  font-weight: 600;
+}
+
+.sidebar-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0.25rem 0 0.5rem 1rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-sublink {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.sidebar-chevron {
+  transition: transform 0.2s ease;
+}
+
+.sidebar-chevron.open {
+  transform: rotate(180deg);
+}
